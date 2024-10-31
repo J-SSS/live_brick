@@ -69,23 +69,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             ballDirection = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)).normalized;
         }
     }
-
-    //    
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     // 공이 대각선으로 이동 시 블럭이 동시에 두 개 충돌되는 것을 처리하기 위해
-    //     // OnTriggerEnter2D에서 충돌 처리를 합니다.
-    //     if (collision.gameObject.CompareTag("Block"))
-    //     {
-    //         collision.GetComponent<BlockComponent>().TakeDamage();
-    //     }
-    // }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision) // OnTriggerEnter2D는 물체끼리 겹치는 이벤트 처리??
     {
         // 공이 대각선으로 이동 시 블럭이 동시에 두 개 충돌되는 것을 처리하기 위해
         // OnTriggerEnter2D에서 충돌 처리를 합니다.
-
         if (collision.gameObject.CompareTag("Block"))
         {
             RemoveBrick(collision.gameObject);
@@ -210,10 +198,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
         else temp = brick; // 충돌한 블럭을 담아둠
 
-// 공 이동 방향 설정
+        
+        // 공 이동 방향 설정
         BoxCollider2D bc = temp.GetComponent<BoxCollider2D>();
 
-// 충돌된 블럭이 1개 이상일 때
+        // 충돌된 블럭이 1개 이상일 때
         if (col.Length > 1)
         {
             if (colObj[0].transform.position.y == colObj[1].transform.position.y)
